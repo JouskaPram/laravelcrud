@@ -8,11 +8,36 @@
 </head>
 <body>
     <div>
-        @foreach($pelajaran as $pel)
-        <ul>
-            <li>{{$pel->nama_pelajaran}}</li>
-        </ul>
-        @endforeach
+          @if(session('status'))
+    <p>{{session('status')}}</p>
+    @endif
+    <form name="pelajaran" id="pelajaran" method="post" action="/pelajaran/store">
+         @csrf
+        <input type="text" id="pelajaran" name="pelajaran">
+        <button type="submit">tambah</button>
+    </form>
+
+        <table>
+            <tr>
+                <td>nama pelajaran</td>
+                <td>action</td>
+            </tr>
+            @foreach($pelajaran as $pel)
+            <tr>
+            <td>{{$pel->nama_pelajaran}}</td>
+            <td>
+                <form  method="post"  action="{{ route('pelajaran.delete', ['id' => $pel->id]) }}">
+            @csrf
+            @method("DELETE")
+            <button type="submit">delete</button>
+        </form>
+            </td>
+            <td>
+                <a href="/pelajaran/{{$pel->id}}">update</a>
+            </td>
+            </tr>
+                @endforeach 
+        </table>
     </div>
 </body>
 </html>
