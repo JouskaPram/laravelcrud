@@ -1,30 +1,28 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+@extends("layout")
+@section('title','single page')
+
+@section('content')
     <div>
           @if(session('status'))
     <p>{{session('status')}}</p>
     @endif
     <form name="pelajaran" id="pelajaran" method="post" action="/pelajaran/store">
          @csrf
-        <input type="text" id="pelajaran" name="pelajaran">
-        <button type="submit">tambah</button>
+        <input type="text" id="pelajaran" name="pelajaran" class="input input-bordered input-primary w-full max-w-xs" placeholder="masukan nama pelajaran">
+        <button type="submit" class="btn btn-primary">tambah</button>
     </form>
 
-        <table>
-            <tr>
+        <table class="table mt-10">
+            <tr class="bg-base-200">
                 <td>nama pelajaran</td>
-                <td>action</td>
+                <td class="text-center" colspan="2">action</td>
             </tr>
             @foreach($pelajaran as $pel)
             <tr>
             <td>{{$pel->nama_pelajaran}}</td>
+            <td>
+                <a href="/pelajaran/{{$pel->id}}">update</a>
+            </td>
             <td>
                 <form  method="post"  action="{{ route('pelajaran.delete', ['id' => $pel->id]) }}">
             @csrf
@@ -32,12 +30,9 @@
             <button type="submit">delete</button>
         </form>
             </td>
-            <td>
-                <a href="/pelajaran/{{$pel->id}}">update</a>
-            </td>
+            
             </tr>
                 @endforeach 
         </table>
     </div>
-</body>
-</html>
+@endsection

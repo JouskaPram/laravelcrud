@@ -17,7 +17,10 @@ class PelajaranController extends Controller
     //     return view("pelajaran.post");
     // }
     public function storepostpelajaran(Request $request)
-    {
+    {  
+    $request->validate([
+        "pelajaran"=>"required|string|max:255"
+    ]);
        $pelajaran = new pelajaran;
        $pelajaran->nama_pelajaran = $request->pelajaran;
        $pelajaran->save();
