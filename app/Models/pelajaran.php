@@ -9,7 +9,7 @@ class pelajaran extends Model
 {
     use HasFactory;
     protected $fillable = ['nama_pelajaran'];
-    public function SISWA()
+    public function siswa()
     {
         return $this->hasMany(siswa::class,'pelajaran_id');
     }
