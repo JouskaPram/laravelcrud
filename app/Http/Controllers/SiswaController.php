@@ -77,6 +77,10 @@ class SiswaController extends Controller
                         ->orWhere("nomor_absen","like","%".$keyword."%")
                         ->orWhere("pelajaran_id","like","%".$keyword."%")
                         ->get();
+
+            if($siswa->isEmpty()){
+                return redirect()->back()->with("none","$keyword tidak ada sir");
+            }
         
         return view("siswa.home",compact(["siswa","pelajaran"]));
     }

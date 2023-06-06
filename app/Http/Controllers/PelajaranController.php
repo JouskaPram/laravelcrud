@@ -16,6 +16,7 @@ class PelajaranController extends Controller
     // {
     //     return view("pelajaran.post");
     // }
+    // function untuk proses create
     public function storepostpelajaran(Request $request)
     {  
     $request->validate([
@@ -52,6 +53,10 @@ class PelajaranController extends Controller
         $keyword = $request->input('keyword');
         $pelajaran = pelajaran::where("nama_pelajaran","like",'%'.$keyword.'%')
         ->get();
+        // validasi jika tidak ada apa apa
+         if($pelajaran->isEmpty()){
+                return redirect()->back()->with("none","gak ada nama pelajar -> $keyword ");
+            }
      return view("pelajaran.view",compact("pelajaran"));
     }
 }

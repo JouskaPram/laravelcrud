@@ -15,14 +15,8 @@
     </div>
 
     @endif
-    @if(session('danger'))
-    <div class="w-1/2 my-2">
-        <div class="alert alert-error">
-          <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-          <span>{{session('danger')}}</span>
-        </div>
-    </div>
-@endif
+   
+   
                 <form  name="siswa" id="siswa" method="post" action="/store"  class="space-y-6">
                  @csrf    
                 <div class="grid grid-cols-4 w-full">
@@ -69,6 +63,22 @@
              <input type="text" id="keyword" name="keyword" class="input input-bordered input-secondary w-full max-w-xs" placeholder="masukan kata kunci">
         <button type="submit" class="btn btn-secondary text-gray-100 ml-5">cari</button>
         </form>
+         @if(session('none'))
+    <div class="w-1/3 my-2">
+        <div class="alert alert-error">
+          <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+          <span>{{session('none')}}</span>
+        </div>
+    </div>
+@endif
+ @if(session('danger'))
+    <div class="w-1/3 my-2">
+        <div class="alert alert-error">
+          <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+          <span>{{session('danger')}}</span>
+        </div>
+    </div>
+@endif
 <table class="table mt-10">
     <tr class="py-5 px-2 bg-neutral font-semibold text-md">
         <td>Nama</td>
