@@ -11,6 +11,7 @@ Route::controller(PelajaranController::class)->group(function(){
     Route::post("/pelajaran/store","storepostpelajaran");
     Route::put("/pelajaran/{p}","updatePelajaran")->name("pelajaran.update");
     Route::delete("/pelajaran/{id}","deletePelajaran")->name("pelajaran.delete");
+    Route::get("/pel/cari","searchPelajaran")->name('pelajaran.search');
 });
 
 //route group siswa
@@ -20,6 +21,7 @@ Route::controller(SiswaController::class)->group(function(){
     Route::put('/siswa/{p}',"updateSiswa")->name("siswa.update");
     Route::post("/store","storeSiswa");
     Route::delete("/siswa/{p}","deleteSiswa")->name("siswa.delete");
+    Route::get('/sis/cari',"searchSiswa")->name("siswa.search");
 
 });
 

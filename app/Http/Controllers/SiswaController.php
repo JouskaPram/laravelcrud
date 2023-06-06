@@ -68,4 +68,16 @@ class SiswaController extends Controller
         $siswa->delete();
         return redirect("/")->with('danger', "Siswa berhasil di hapus");
     }
+    public function searchSiswa(Request $request)
+    {
+        $pelajaran = pelajaran::all();
+        $keyword = $request->input("keyword");
+        $siswa = siswa::where("nama","like","%".$keyword."%")
+                        ->orWhere("kelas","like","%".$keyword."%")
+                        ->orWhere("nomor_absen","like","%".$keyword."%")
+                        ->orWhere("pelajaran_id","like","%".$keyword."%")
+                        ->get();
+        
+        return view("siswa.home",compact(["siswa","pelajaran"]));
+    }
 }

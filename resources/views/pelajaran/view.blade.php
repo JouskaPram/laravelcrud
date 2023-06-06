@@ -49,5 +49,9 @@
             </tr>
                 @endforeach 
         </table>
+        <form action="{{route('pelajaran.search')}}" method="GET" class="mt-10">
+             <input type="text" id="keyword" name="keyword" class="input input-bordered input-secondary w-full max-w-xs" placeholder="masukan nama pelajaran">
+        <button type="submit" class="btn btn-secondary text-gray-100 ml-5">cari</button>
+        </form>
     </div>
 @endsection

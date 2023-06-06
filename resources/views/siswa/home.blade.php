@@ -52,6 +52,7 @@
                             <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">pelajaran
                             </label>
                           <select name="pelajaran_id" id="pelajaran_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-sky-500 focus:border-sky-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white">
+                          
             @foreach($pelajaran as $p)
             <option value="{{$p->id}}">{{$p->nama_pelajaran}}</option>
             @endforeach
@@ -64,7 +65,10 @@
                 </form>
             </div>
   
-    
+      <form action="{{route('siswa.search')}}" method="GET" class="mt-10">
+             <input type="text" id="keyword" name="keyword" class="input input-bordered input-secondary w-full max-w-xs" placeholder="masukan kata kunci">
+        <button type="submit" class="btn btn-secondary text-gray-100 ml-5">cari</button>
+        </form>
 <table class="table mt-10">
     <tr class="py-5 px-2 bg-neutral font-semibold text-md">
         <td>Nama</td>

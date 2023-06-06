@@ -47,4 +47,11 @@ class PelajaranController extends Controller
         return redirect("pelajaran")->with('sukses',"matapelajaran berhasil di ubah");
 
     }
+    public function searchPelajaran(Request $request)
+    {
+        $keyword = $request->input('keyword');
+        $pelajaran = pelajaran::where("nama_pelajaran","like",'%'.$keyword.'%')
+        ->get();
+     return view("pelajaran.view",compact("pelajaran"));
+    }
 }
