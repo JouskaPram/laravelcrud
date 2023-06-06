@@ -19,22 +19,22 @@
    
                 <form  name="siswa" id="siswa" method="post" action="/store"  class="space-y-6">
                  @csrf    
-                <div class="grid grid-cols-4 w-full">
-                        <div class="col-span-2 px-5 mt-3 ">
+                <div class="md:grid md:grid-cols-4 w-full">
+                        <div class="md:col-span-2 px-5 mt-3 ">
                             <label for="nama" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                                 Nama</label>
                             <input type="text" id="nama" name="nama" 
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-sky-500 focus:border-sky-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                                 required>
                         </div>
-                        <div class="col-span-2 px-5 mt-3">
+                        <div class="md:col-span-2 px-5 mt-3">
                             <label for="kelas" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                                 Kelas</label>
                             <input type="text" id="kelas" name="kelas"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-sky-500 focus:border-sky-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                                 required>
                         </div>
-                        <div class="col-span-2 px-5 mt-3">
+                        <div class="md:col-span-2 px-5 mt-3">
                             <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                                 nomor absen
                             </label>
@@ -42,7 +42,7 @@
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-sky-500 focus:border-sky-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                                 required>
                         </div>
-                        <div class="col-span-1 px-5 mt-3">
+                        <div class="md:col-span-1 px-5 mt-3">
                             <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">pelajaran
                             </label>
                           <select name="pelajaran_id" id="pelajaran_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-sky-500 focus:border-sky-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white">
@@ -60,7 +60,7 @@
             </div>
   
       <form action="{{route('siswa.search')}}" method="GET" class="mt-10">
-             <input type="text" id="keyword" name="keyword" class="input input-bordered input-secondary w-full max-w-xs" placeholder="masukan kata kunci">
+             <input type="text" id="keyword" name="keyword" class="input input-bordered input-secondary w-2/3 max-w-xs" placeholder="masukan kata kunci">
         <button type="submit" class="btn btn-secondary text-gray-100 ml-5">cari</button>
         </form>
          @if(session('none'))
@@ -79,7 +79,7 @@
         </div>
     </div>
 @endif
-<table class="table mt-10">
+<table class="table mt-10 hidden md:table w-full">
     <tr class="py-5 px-2 bg-neutral font-semibold text-md">
         <td>Nama</td>
         <td>Kelas</td>
@@ -106,5 +106,18 @@
     </tr>
     @endforeach
 </table>
+ @foreach($siswa as $si)
+<ul class="menu menu-xs bg-neutral w-full py-2 mt-2 rounded-box border-b-1 border-base-100 md:hidden">
+    <li>
+        <div class="flex justify-between">
+            <div class="text-lg font-semibold">{{$si->nama}}</div> 
+            <div class="text-md">{{$si->kelas}}</div>
+        </div>
+        <p>nomor absen: {{$si->nomor_absen}}</p>
+       
+        <p>{{$si->pelajaran->nama_pelajaran}}</p>
+    </li>
 
+</ul>
+@endforeach
 @endsection

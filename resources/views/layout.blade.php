@@ -25,23 +25,33 @@
         <li><a href="/pelajaran" class="font-semibold">Pelajaran</a></li>
       </ul>
     </div>
-    <a class="btn btn-ghost normal-case text-xl">Pram</a>
+    <a class="btn btn-ghost normal-case text-xl">{{ Auth::user()->name }}</a>
   </div>
   <div class="navbar-center hidden lg:flex">
     <ul class="menu menu-horizontal px-1">
-      <li><a class="font-semibold hover:border-bottom-1 border-gray-800" href="/">Home</a></li>
+      <li><a class="font-semibold hover:border-bottom-1 border-gray-800" href="/home">Home</a></li>
       <li tabindex="0" class="font-semibold">
        <a class="font-semibold hover:border-bottom-1 border-gray-800" href="/pelajaran">Pelajaran</a>
         
       </li>
-      <li><a class="font-semibold hover:border-bottom-1 border-gray-800" href="/">Siswa</a></li>
+      <li><a class="font-semibold hover:border-bottom-1 border-gray-800" href="/home">Siswa</a></li>
+    
     </ul>
   </div>
   <div class="navbar-end">
-    
+     
+        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+
+                            <button :href="route('logout')"
+                                    onclick="event.preventDefault();
+                                                this.closest('form').submit();">
+                                {{ __('Log Out') }}
+</button>
+                        </form>
   </div>
 </div>
-    <div class="content p-16 items-center">
+    <div class="content md:p-16 p-10 items-center">
         @yield('content')
     </div>
     <!-- <p class="text-center text-italic">Pramudita</p> -->
