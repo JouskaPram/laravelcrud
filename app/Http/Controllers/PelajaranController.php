@@ -24,14 +24,14 @@ class PelajaranController extends Controller
        $pelajaran = new pelajaran;
        $pelajaran->nama_pelajaran = $request->pelajaran;
        $pelajaran->save();
-       return redirect("/pelajaran")->with('status',"matapelajaran berhasil di tambahkan");
+       return redirect("/pelajaran")->with('sukses',"matapelajaran berhasil di tambahkan");
        
     }
     public function deletePelajaran($id)
     {
         $pelajaran = pelajaran::find($id);
         $pelajaran->delete();
-        return redirect("/pelajaran")->with('status',"matapelajaran berhasil di hapus");
+        return redirect("/pelajaran")->with('danger',"matapelajaran berhasil di hapus");
     }
     public function singlePelajaran($p)
     {
@@ -44,7 +44,7 @@ class PelajaranController extends Controller
         $pelajaran->nama_pelajaran = $request->namapelajaran;
         $pelajaran->save();
 
-        return redirect("pelajaran")->with('status',"matapelajaran berhasil di ubah");
+        return redirect("pelajaran")->with('sukses',"matapelajaran berhasil di ubah");
 
     }
 }
