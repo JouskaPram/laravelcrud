@@ -15,7 +15,7 @@ class SiswaController extends Controller
     //    ->join("pelajarans","siswas.pelajaran_id",'=','pelajarans.id')
     //    ->select("siswas.*","pelajarans.nama_pelajaran")
     //    ->first();
-    $siswa = siswa::all();
+    $siswa = siswa::orderBy("id","DESC")->get();
     $pelajaran = pelajaran::all();
        return view("siswa.home",compact(["siswa","pelajaran"]));
     }
@@ -60,12 +60,12 @@ class SiswaController extends Controller
    $siswa->pelajaran_id = $request->pelajaran_id;
    $siswa->save();
 
-   return redirect("/");
+   return redirect("/")->with('status', "Siswa berhasil di ubah");
     }
     public function deleteSiswa($p)
     {
         $siswa = siswa::find($p);
         $siswa->delete();
-        return redirect("/");
+        return redirect("/")->with('status', "Siswa berhasil di hapus");
     }
 }

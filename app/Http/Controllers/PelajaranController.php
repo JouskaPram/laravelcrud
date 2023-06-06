@@ -9,7 +9,7 @@ class PelajaranController extends Controller
 {
     public function GetPelajaran()
     {
-        $pelajaran =  pelajaran::all();
+        $pelajaran =  pelajaran::orderBy('id', 'DESC')->get();
         return view("pelajaran.view",["pelajaran"=>$pelajaran]);
     }
     // public function PostPelajaran()
@@ -24,14 +24,14 @@ class PelajaranController extends Controller
        $pelajaran = new pelajaran;
        $pelajaran->nama_pelajaran = $request->pelajaran;
        $pelajaran->save();
-       return redirect("/pelajaran")->with('status',"mata pelajaran berhasil di tambahkan");
+       return redirect("/pelajaran")->with('status',"matapelajaran berhasil di tambahkan");
        
     }
     public function deletePelajaran($id)
     {
         $pelajaran = pelajaran::find($id);
         $pelajaran->delete();
-        return redirect("/pelajaran");
+        return redirect("/pelajaran")->with('status',"matapelajaran berhasil di hapus");
     }
     public function singlePelajaran($p)
     {
@@ -44,7 +44,7 @@ class PelajaranController extends Controller
         $pelajaran->nama_pelajaran = $request->namapelajaran;
         $pelajaran->save();
 
-        return redirect("pelajaran");
+        return redirect("pelajaran")->with('status',"matapelajaran berhasil di ubah");
 
     }
 }
