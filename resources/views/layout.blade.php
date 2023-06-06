@@ -19,7 +19,7 @@
       <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
         <li><a href="/" class="font-semibold">Home</a></li>
         <li>
-         <a href="/" class="font-semibold">Siswa</a>
+         <a href="/" class="font-semibold  border-sky-200">Siswa</a>
           
         </li>
         <li><a href="/pelajaran" class="font-semibold">Pelajaran</a></li>

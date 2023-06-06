@@ -36,13 +36,13 @@
             <tr>
             <td>{{$pel->nama_pelajaran}}</td>
             <td>
-                <a href="/pelajaran/{{$pel->id}}" class="badge badge-primary badge-outline text-gray-100 p-3">update</a>
+                <a href="/pelajaran/{{$pel->id}}" class="btn btn-sm btn-primary btn-outline text-gray-100 ">update</a>
             </td>
             <td>
                 <form  method="post"  action="{{ route('pelajaran.delete', ['id' => $pel->id]) }}">
             @csrf
             @method("DELETE")
-            <button type="submit" class="badge badge-accent p-3 text-gray-100">delete</button>
+            <button type="submit" class="btn btn-sm btn-accent  text-gray-100">delete</button>
         </form>
             </td>
             

@@ -24,7 +24,7 @@ class SiswaController extends Controller
    $request->validate([
     "nama" => "required|string",
     "kelas" => "required|string",
-    "nomor_absen" => "required|max:255",
+    "nomor_absen" => "nullable|max:255",
     "pelajaran_id" => "required",
    ]);
 

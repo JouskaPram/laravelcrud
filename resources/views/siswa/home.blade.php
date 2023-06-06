@@ -80,13 +80,13 @@
         <td>{{$s->nomor_absen}}</td>
         <td>{{$s->pelajaran->nama_pelajaran}}</td>
         <td>
-            <a href="/siswa/{{$s->id}}" class="badge badge-primary badge-outline text-gray-100 p-3">update</a>
+            <a href="/siswa/{{$s->id}}" class="btn btn-sm btn-primary btn-outline text-gray-100 ">update</a>
         </td>
         <td>
              <form  method="post"  action="{{ route('siswa.delete', ['p' => $s->id]) }}">
             @csrf
             @method("DELETE")
-            <button type="submit" class="badge badge-accent p-3 text-gray-100">delete</button>
+            <button type="submit" class="btn  btn-sm btn-accent  text-gray-100">delete</button>
         </form>
         </td>
     </tr>
