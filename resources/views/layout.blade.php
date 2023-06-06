@@ -44,6 +44,6 @@
     <div class="content p-16 items-center">
         @yield('content')
     </div>
-    <!-- footer -->
+    <!-- <p class="text-center text-italic">Pramudita</p> -->
 </body>
 </html>

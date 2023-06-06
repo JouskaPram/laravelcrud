@@ -4,19 +4,23 @@ use App\Http\Controllers\PelajaranController;
 use App\Http\Controllers\SiswaController;
 use Illuminate\Support\Facades\Route;
 
-// route pelajaran
-Route::get('/pelajaran',[PelajaranController::class,"GetPelajaran"]);
-Route::post("/pelajaran/store",[PelajaranController::class,"storepostpelajaran"]);
-Route::get('/pelajaran/{p}',[PelajaranController::class,"singlePelajaran"]);
-Route::put("/pelajaran/{p}",[PelajaranController::class,"updatePelajaran"])->name("pelajaran.update");
-// Route::get("/tambah",[PelajaranController::class,"PostPelajaran"]);
-Route::delete("/pelajaran/{id}",[PelajaranController::class,"deletePelajaran"])->name("pelajaran.delete");
+// route group pelajaran
+Route::controller(PelajaranController::class)->group(function(){
+    Route::get('/pelajaran',"GetPelajaran");
+    Route::get('/pelajaran/{p}',"singlePelajaran");
+    Route::post("/pelajaran/store","storepostpelajaran");
+    Route::put("/pelajaran/{p}","updatePelajaran")->name("pelajaran.update");
+    Route::delete("/pelajaran/{id}","deletePelajaran")->name("pelajaran.delete");
+});
 
-//route siswa
-Route::get('/',[SiswaController::class,"home"]);
-Route::get('/siswa/{p}',[SiswaController::class,"singleSiswa"]);
-Route::put('/siswa/{p}',[SiswaController::class,"updateSiswa"])->name("siswa.update");
-Route::post("/store",[SiswaController::class,"storeSiswa"]);
-Route::delete("/siswa/{p}",[SiswaController::class,"deleteSiswa"])->name("siswa.delete");
+//route group siswa
+Route::controller(SiswaController::class)->group(function(){
+    Route::get('/',"home");
+    Route::get('/siswa/{p}',"singleSiswa");
+    Route::put('/siswa/{p}',"updateSiswa")->name("siswa.update");
+    Route::post("/store","storeSiswa");
+    Route::delete("/siswa/{p}","deleteSiswa")->name("siswa.delete");
+
+});
 
 
