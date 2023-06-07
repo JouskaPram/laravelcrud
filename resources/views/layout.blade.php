@@ -25,21 +25,23 @@
         <li><a href="/pelajaran" class="font-semibold">Pelajaran</a></li>
       </ul>
     </div>
+    @if($user)
     <a class="btn btn-ghost normal-case text-xl">{{ Auth::user()->name }}</a>
+    @endif()
   </div>
   <div class="navbar-center hidden lg:flex">
     <ul class="menu menu-horizontal px-1">
-      <li><a class="font-semibold hover:border-bottom-1 border-gray-800" href="/home">Home</a></li>
+      <li><a class="font-semibold hover:border-bottom-1 border-gray-800" href="/">Home</a></li>
       <li tabindex="0" class="font-semibold">
        <a class="font-semibold hover:border-bottom-1 border-gray-800" href="/pelajaran">Pelajaran</a>
         
       </li>
-      <li><a class="font-semibold hover:border-bottom-1 border-gray-800" href="/home">Siswa</a></li>
+      <li><a class="font-semibold hover:border-bottom-1 border-gray-800" href="/">Siswa</a></li>
     
     </ul>
   </div>
   <div class="navbar-end">
-     
+      @if($user)
         <form method="POST" action="{{ route('logout') }}">
                             @csrf
 
@@ -47,8 +49,13 @@
                                     onclick="event.preventDefault();
                                                 this.closest('form').submit();">
                                 {{ __('Log Out') }}
-</button>
+                    </button>
                         </form>
+      @endif()
+      @if(!$user)  
+      <a href="/login" class="btn btn-primary btn-sm">Login</a>
+      @endif()
+
   </div>
 </div>
     <div class="content md:p-16 p-10 items-center">

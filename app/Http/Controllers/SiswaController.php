@@ -5,10 +5,12 @@ namespace App\Http\Controllers;
 use App\Models\pelajaran;
 use App\Models\siswa;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class SiswaController extends Controller
 {
+   
     public function home()
     {
     //    $siswa = DB::table("siswas")
@@ -17,7 +19,11 @@ class SiswaController extends Controller
     //    ->first();
     $siswa = siswa::orderBy("id","DESC")->get();
     $pelajaran = pelajaran::all();
-       return view("siswa.home",compact(["siswa","pelajaran"]));
+     $user = Auth::user();
+    // var_dump($user);
+        return view("siswa.home",compact(["siswa","pelajaran","user"]));
+    
+
     }
   public function storeSiswa(Request $request)
 {
@@ -27,21 +33,28 @@ class SiswaController extends Controller
     "nomor_absen" => "nullable|max:255",
     "pelajaran_id" => "required",
    ]);
+   if(Auth::check()){
 
-   $siswa = new siswa;
-   $siswa->nama = $request->nama;
-   $siswa->kelas = $request->kelas;
-   $siswa->nomor_absen = $request->nomor_absen;
-   $siswa->pelajaran_id = $request->pelajaran_id;
-   $siswa->save();
+       $siswa = new siswa;
+       $siswa->nama = $request->nama;
+       $siswa->kelas = $request->kelas;
+       $siswa->nomor_absen = $request->nomor_absen;
+       $siswa->pelajaran_id = $request->pelajaran_id;
+       $siswa->save();
+       return redirect("/")->with('sukses', "Siswa berhasil ditambahkan");
+   }
+   else{
+    return redirect("/")->with("notauser","kamu bukan user");
+   }
 
-   return redirect("/")->with('sukses', "Siswa berhasil ditambahkan");
 }
     public function singleSiswa($p)
-    {
-        $pelajaran = pelajaran::all();
-        $siswa = siswa::find($p);
-        return view("siswa.single",["siswa"=>$siswa,"pelajaran"=>$pelajaran]);
+    {    $user = Auth::user();
+        if(Auth::check()){
+            $pelajaran = pelajaran::all();
+            $siswa = siswa::find($p);
+        }
+        return view("siswa.single",["siswa"=>$siswa,"pelajaran"=>$pelajaran,"user"=>$user]);
 
     }
     public function updateSiswa(Request $request,$p)
@@ -64,9 +77,14 @@ class SiswaController extends Controller
     }
     public function deleteSiswa($p)
     {
-        $siswa = siswa::find($p);
-        $siswa->delete();
-        return redirect("/")->with('danger', "Siswa berhasil di hapus");
+        if(Auth::check()){
+            $siswa = siswa::find($p);
+            $siswa->delete();
+            return redirect("/")->with('danger', "Siswa berhasil di hapus");
+        }
+        else{
+            return redirect("/")->with("notauser","kalo mau delete harus login dulu ^^");
+        }
     }
     public function searchSiswa(Request $request)
     {
