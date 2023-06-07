@@ -95,6 +95,7 @@
         <td>Kelas</td>
         <td>nomor_absen</td>
         <td>pelajaran</td>
+        <td>last modified</td>
         <td colspan="2" class="text-center">action</td>
     </tr>
     @foreach($siswa as $s)
@@ -103,6 +104,7 @@
         <td>{{$s->kelas}}</td>
         <td>{{$s->nomor_absen}}</td>
         <td>{{$s->pelajaran->nama_pelajaran}}</td>
+       <td>{{ $s->user->name }}</td>
         <td>
             <a href="/siswa/{{$s->id}}" class="btn btn-sm btn-primary btn-outline text-gray-100 ">update</a>
         </td>
@@ -120,12 +122,13 @@
 <ul class="menu menu-xs bg-neutral w-full py-2 mt-2 rounded-box border-b-1 border-base-100 md:hidden">
     <li>
         <div class="flex justify-between">
-            <div class="text-lg font-semibold">{{$si->nama}}</div> 
-            <div class="text-md">{{$si->kelas}}</div>
+            <div class="text-lg font-semibold">{{$si->nama}} ({{$si->nomor_absen}})</div> 
+            <div class="text-md text-italic font-italic">last modified {{$s->user->name}}</div>
         </div>
-        <p>nomor absen: {{$si->nomor_absen}}</p>
+       
        
         <p>{{$si->pelajaran->nama_pelajaran}}</p>
+        <p class="text-left text-xs">{{ $s->user->name }}</p>
     </li>
 
 </ul>

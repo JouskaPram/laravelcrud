@@ -45,7 +45,7 @@
         <form method="POST" action="{{ route('logout') }}">
                             @csrf
 
-                            <button :href="route('logout')"
+                            <button class="btn btn-primary btn-sm" :href="route('logout')"
                                     onclick="event.preventDefault();
                                                 this.closest('form').submit();">
                                 {{ __('Log Out') }}
