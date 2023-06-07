@@ -4,18 +4,23 @@ namespace App\Http\Controllers;
 
 use App\Models\pelajaran;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PelajaranController extends Controller
 {
     public function GetPelajaran()
     {
+        $user = Auth::user();
         $pelajaran =  pelajaran::orderBy('id', 'DESC')->get();
-        return view("pelajaran.view",["pelajaran"=>$pelajaran]);
+        if(Auth::check()){
+
+            return view("pelajaran.view",["pelajaran"=>$pelajaran,"user"=>$user]);
+        }
+        else{
+            return redirect("/")->with("notauser","pergi login dulu sir");
+        }
     }
-    // public function PostPelajaran()
-    // {
-    //     return view("pelajaran.post");
-    // }
+  
     // function untuk proses create
     public function storepostpelajaran(Request $request)
     {  
@@ -36,11 +41,13 @@ class PelajaranController extends Controller
     }
     public function singlePelajaran($p)
     {
+         $user = Auth::user();
         $pelajaran = pelajaran::find($p);
-        return view("pelajaran.single",['pelajaran'=>$pelajaran]);
+        return view("pelajaran.single",['pelajaran'=>$pelajaran,"user"=>$user]);
     }
     public function updatePelajaran(Request $request,$p)
     {
+        
         $pelajaran = pelajaran::find($p);
         $pelajaran->nama_pelajaran = $request->namapelajaran;
         $pelajaran->save();

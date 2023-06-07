@@ -16,8 +16,8 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-Route::middleware('auth')->group(function(){
-    Route::controller(PelajaranController::class)->group(function(){
+// Route::middleware('auth')->group(function(){
+Route::controller(PelajaranController::class)->group(function(){
         Route::get('/pelajaran',"GetPelajaran")->name('dashboard');
         Route::get('/pelajaran/{p}',"singlePelajaran");
         Route::post("/pelajaran/store","storepostpelajaran");
@@ -25,16 +25,16 @@ Route::middleware('auth')->group(function(){
         Route::delete("/pelajaran/{id}","deletePelajaran")->name("pelajaran.delete");
         Route::get("/pel/cari","searchPelajaran")->name('pelajaran.search');
     });
-});
+// });
 
 //route group siswa
+Route::controller(SiswaController::class)->group(function(){
+    Route::get('/',"home")->name('home');;
+    Route::delete("/siswa/{p}","deleteSiswa")->name("siswa.delete");
+    Route::post("/store","storeSiswa");
 Route::middleware('auth')->group(function(){
-    Route::controller(SiswaController::class)->group(function(){
-    Route::get('/home',"home")->middleware(['auth', 'verified'])->name('home');;
     Route::get('/siswa/{p}',"singleSiswa");
     Route::put('/siswa/{p}',"updateSiswa")->name("siswa.update");
-    Route::post("/store","storeSiswa");
-    Route::delete("/siswa/{p}","deleteSiswa")->name("siswa.delete");
     Route::get('/sis/cari',"searchSiswa")->name("siswa.search");
 
 });
@@ -43,9 +43,6 @@ Route::middleware('auth')->group(function(){
 
 
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

@@ -55,7 +55,9 @@
                     </div>
                     <button
                         class="py-1.5 px-3 mx-5 rounded-md bg-sky-500 hover:bg-sky-400 hover:transition duration-500 text-white font-semibold">Ubah</button>
+                          <a href="/" class="py-2 px-3 mx-5 rounded-md bg-red-500 hover:bg-red-400 hover:transition duration-500 text-white font-semibold">kembali</a>
                 </form>
+              
             </div>
   
 @endsection
