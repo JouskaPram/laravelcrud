@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\Route;
 // Route::middleware('auth')->group(function(){
 Route::controller(PelajaranController::class)->group(function(){
         Route::get('/pelajaran',"GetPelajaran")->name('dashboard');
+        Route::get('/pelajaran/siswa/{p}',"FilterPelajaran");
         Route::get('/pelajaran/{p}',"singlePelajaran");
         Route::post("/pelajaran/store","storepostpelajaran");
         Route::put("/pelajaran/{p}","updatePelajaran")->name("pelajaran.update");

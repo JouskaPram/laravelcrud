@@ -41,7 +41,7 @@
             </tr>
             @foreach($pelajaran as $pel)
             <tr>
-            <td>{{$pel->nama_pelajaran}}</td>
+            <td><a href="/pelajaran/siswa/{{$pel->id}}">{{$pel->nama_pelajaran}}</a></td>
             <td>
                 <a href="/pelajaran/{{$pel->id}}" class="btn btn-sm btn-primary btn-outline text-gray-100 ">update</a>
             </td>
@@ -65,7 +65,7 @@
 <ul class="menu menu-xs bg-neutral w-full py-2 mt-2 rounded-box border-b-1 border-base-100 md:hidden">
     <li>
      
-        <p class="text-lg font-semibold">{{$pela->nama_pelajaran}}</p>
+        <a href="/pelajaran/siswa/{{$pela->id}}" class="font-semibold text-lg ">{{$pel->nama_pelajaran}}</a>
           <div class="flex ">
             <div class="text-lg font-semibold">
                  <a href="/pelajaran/{{$pel->id}}" class="btn btn-sm btn-primary btn-outline text-gray-100 ">update</a>

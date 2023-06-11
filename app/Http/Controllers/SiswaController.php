@@ -97,7 +97,8 @@ class SiswaController extends Controller
         }
     }
     public function searchSiswa(Request $request)
-    {
+    {   
+       $user = Auth::user();
         $pelajaran = pelajaran::all();
         $keyword = $request->input("keyword");
         $siswa = siswa::where("nama","like","%".$keyword."%")
@@ -110,6 +111,6 @@ class SiswaController extends Controller
                 return redirect()->back()->with("none","$keyword tidak ada sir");
             }
         
-        return view("siswa.home",compact(["siswa","pelajaran"]));
+        return view("siswa.home",compact(["siswa","pelajaran","user"]));
     }
 }

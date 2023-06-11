@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\pelajaran;
+use App\Models\siswa;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -57,6 +58,7 @@ class PelajaranController extends Controller
     }
     public function searchPelajaran(Request $request)
     {
+         $user = Auth::user();
         $keyword = $request->input('keyword');
         $pelajaran = pelajaran::where("nama_pelajaran","like",'%'.$keyword.'%')
         ->get();
@@ -64,6 +66,13 @@ class PelajaranController extends Controller
          if($pelajaran->isEmpty()){
                 return redirect()->back()->with("none","gak ada nama pelajar -> $keyword ");
             }
-     return view("pelajaran.view",compact("pelajaran"));
+     return view("pelajaran.view",compact("pelajaran","user"));
+    }
+    public function FilterPelajaran($p)  {
+        $siswa = pelajaran::find($p)->siswa;
+        
+        $pelajaran = pelajaran::find($p);
+$user = Auth::user();
+        return view("pelajaran.filter",["siswa"=>$siswa,"pelajaran"=>$pelajaran,"user"=>$user]);
     }
 }

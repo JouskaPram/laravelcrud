@@ -41,7 +41,7 @@
             @endif -->
             <a href="/register" class="text-gray-300 text-gray-300 text-base ">Belum punya akun?</a>
 
-            <x-primary-button class="ml-3">
+            <x-primary-button class="ml-3 btn btn-primary">
                 {{ __('Log in') }}
             </x-primary-button>
         </div>

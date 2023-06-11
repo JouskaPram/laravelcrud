@@ -73,19 +73,21 @@
              <input type="text" id="keyword" name="keyword" class="input input-bordered input-secondary w-2/3 max-w-xs" placeholder="masukan kata kunci">
         <button type="submit" class="btn btn-secondary text-gray-100 ml-5">cari</button>
         </form>
-         @if(session('none'))
-    <div class="w-1/3 my-2">
-        <div class="alert alert-error">
-          <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-          <span>{{session('none')}}</span>
-        </div>
-    </div>
-@endif
+      
  @if(session('danger'))
     <div class="w-1/3 my-2">
         <div class="alert alert-error">
           <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
           <span>{{session('danger')}}</span>
+        </div>
+    </div>
+@endif
+<!-- validate jika tidak ada di search -->
+ @if(session('none'))
+    <div class="w-1/3 my-2">
+        <div class="alert alert-error">
+          <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+          <span>{{session('none')}}</span>
         </div>
     </div>
 @endif
@@ -98,8 +100,10 @@
         <td>last modified</td>
         <td colspan="2" class="text-center">action</td>
     </tr>
+   
     @foreach($siswa as $s)
     <tr>
+      
         <td>{{$s->nama}}</td>
         <td>{{$s->kelas}}</td>
         <td>{{$s->nomor_absen}}</td>
@@ -125,7 +129,7 @@
             <div class="text-lg font-semibold">{{$si->nama}} ({{$si->nomor_absen}})</div> 
             <div class="text-md text-italic font-italic">last modified {{$s->user->name}}</div>
         </div>
-       
+
        
         <p>{{$si->pelajaran->nama_pelajaran}}</p>
         <p class="text-left text-xs">{{ $s->user->name }}</p>
