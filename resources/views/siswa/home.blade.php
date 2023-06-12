@@ -12,6 +12,7 @@
     </div>
 
     @endif
+    @can("admin") 
   <div class="w-full widget  p-4 rounded-lg bg-neutral border-l-4 shadow-sm border-gray-800">
   
                 <h3 class="text-left font-semibold text-gray-200 text-3xl mb-5">Tambah Siswa</h3>
@@ -26,7 +27,7 @@
     @endif
                        
    
-   
+
                 <form  name="siswa" id="siswa" method="post" action="/store"  class="space-y-6">
                  @csrf    
                 <div class="md:grid md:grid-cols-4 w-full">
@@ -68,6 +69,7 @@
                         class="py-1.5 px-3 mx-5 rounded-md bg-sky-500 hover:bg-sky-400 hover:transition duration-500 text-white font-semibold">tambah</button>
                 </form>
             </div>
+            @endcan
   
       <form action="{{route('siswa.search')}}" method="GET" class="mt-10">
              <input type="text" id="keyword" name="keyword" class="input input-bordered input-secondary w-2/3 max-w-xs" placeholder="masukan kata kunci">

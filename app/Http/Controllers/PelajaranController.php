@@ -11,15 +11,15 @@ class PelajaranController extends Controller
 {
     public function GetPelajaran()
     {
+        $this->authorize("admin");
         $user = Auth::user();
         $pelajaran =  pelajaran::orderBy('id', 'DESC')->get();
-        if(Auth::check()){
+     
 
             return view("pelajaran.view",["pelajaran"=>$pelajaran,"user"=>$user]);
-        }
-        else{
-            return redirect("/")->with("notauser","pergi login dulu sir");
-        }
+        
+       
+        
     }
   
     // function untuk proses create
