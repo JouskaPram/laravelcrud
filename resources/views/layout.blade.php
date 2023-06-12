@@ -25,7 +25,9 @@
         <li><a href="/pelajaran" class="font-semibold">Pelajaran</a></li>
       </ul>
     </div>
-    <a class="btn btn-ghost normal-case text-xl">Pram</a>
+    @if($user)
+    <a class="btn btn-ghost normal-case text-xl">{{ Auth::user()->name }}</a>
+    @endif()
   </div>
   <div class="navbar-center hidden lg:flex">
     <ul class="menu menu-horizontal px-1">
@@ -35,13 +37,28 @@
         
       </li>
       <li><a class="font-semibold hover:border-bottom-1 border-gray-800" href="/">Siswa</a></li>
+    
     </ul>
   </div>
   <div class="navbar-end">
-    
+      @if($user)
+        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+
+                            <button class="btn btn-primary btn-sm" :href="route('logout')"
+                                    onclick="event.preventDefault();
+                                                this.closest('form').submit();">
+                                {{ __('Log Out') }}
+                    </button>
+                        </form>
+      @endif()
+      @if(!$user)  
+      <a href="/login" class="btn btn-primary btn-sm">Login</a>
+      @endif()
+
   </div>
 </div>
-    <div class="content p-16 items-center">
+    <div class="content md:p-16 p-10 items-center">
         @yield('content')
     </div>
     <!-- <p class="text-center text-italic">Pramudita</p> -->
